@@ -9,4 +9,12 @@ export default {
       throw (error)
     }
   },
+  async getRepasCommande() {
+    try {
+      const reponse = await axios('/api/healthyfood/meal/')
+      return reponse.data.results
+    } catch (error) {
+      throw error
+    }
+  },
 }

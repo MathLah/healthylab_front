@@ -1,29 +1,36 @@
 <template>
   <div>
-    <span>{{ profilComplet.basal_metabolic_rate }} KCAL conseillées</span>
-    <span>{{ caloriesRestantes }} KCAL restantes</span>
-    <span>{{ caloriesBrulees }} KCAL brulées</span>
-    <span>Il vous reste {{ restePoidsAPerdre }} à perdre</span>
-    <span v-for="jour in getJourSemaine" >{{ jour | shortDate }}</span>
+    <div>
+      <div>{{ profilComplet.basal_metabolic_rate }} KCAL conseillées</div>
+      <div>{{ caloriesRestantes }} KCAL restantes</div>
+      <div>{{ caloriesBrulees }} KCAL brulées</div>
+      <div>Il vous reste {{ restePoidsAPerdre }}kg à perdre</div>
+    </div>
+    <div>
+      <span v-for="jour in getJourSemaine">{{ jour | shortDate }}</span>
+    </div>
   </div>
 </template>
 
 <script>
+  import store from '../store'
+
   export default {
     name : 'Accueil',
     data() {
       return {}
     },
-    async created() {
-      this.$store.commit('changeTitle', 'Journal')
+    async beforeRouteEnter(to, from, next) {
+      store.commit('changeTitle', 'Journal')
       try {
-        await this.$store.dispatch('getInfosComplete')
+        await store.dispatch('getInfosComplete')
       } catch (err) {
         if (err.reponse) {
           console.error(err)
         }
         console.error(err)
       }
+      next()
     },
     computed : {
       profilComplet() {
@@ -56,7 +63,7 @@
         // TODO : Somme KCAL base + calories brulée - repas
         let caloriesRestantes = this.profilComplet.basal_metabolic_rate
         caloriesRestantes += this.caloriesBrulees
-        caloriesRestantes -= this.$store.getters.caloriesRepasPrise
+        caloriesRestantes -= this.$store.getters.caloriesRepasConsommes
         return caloriesRestantes
       },
     },

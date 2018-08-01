@@ -69,7 +69,6 @@
 </template>
 
 <script>
-  import { getInfosBase } from '../api/profil'
   import store from '../store'
 
   export default {
@@ -77,18 +76,17 @@
     data() {
       return {
         actionMenu : [
-          {label : 'Séance', icon : 'md-menu', routeName : 'AjouterSeance'},
-          {label : 'Repas', icon : 'md-menu', routeName : 'AjouterRepas'},
-          {label : 'Coach / éléve', icon : 'md-menu', routeName : 'AjouterAmi'},
+          { label : 'Séance', icon : 'md-menu', routeName : 'AjouterSeance' },
+          { label : 'Repas', icon : 'md-menu', routeName : 'AjouterRepas' },
+          { label : 'Coach / éléve', icon : 'md-menu', routeName : 'AjouterAmi' },
         ],
       }
     },
     async beforeRouteEnter(to, from, next) {
       try {
-        const infos = await getInfosBase()
-        store.commit('setInfosbase', infos)
+        await store.dispatch('getInfosBase')
       } catch (e) {
-
+        console.log(e)
       }
       next()
     },
@@ -121,6 +119,7 @@
     > * {
       flex: 1;
       align-content: center;
+      text-align: center;
 
       a.router-link-exact-active {
         color: #00A19A;

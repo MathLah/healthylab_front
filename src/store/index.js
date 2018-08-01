@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 //  import des differents modules
 import authApi from '@/api/auth'
-import repas from './repas'
 import profil from './profil'
+import repas from './repas'
+import activites from './activites'
 import navigator from './navigator'
 
 
@@ -46,8 +47,9 @@ const app = {
 export default new Vuex.Store({
   ...app,
   modules : {
-    repas,
     profil,
+    repas,
+    activites,
     navigator,
   },
 })
