@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>
-      Commandez avant 18h pour une livraison le {{ dateLivraison }} midi.
+      Commandez avant 18h pour une livraison le {{ dateLivraison | shortDate }} midi.
     </span>
 
     <v-ons-list>
@@ -14,10 +14,9 @@
           <div class="content">
             <div>
               <v-ons-button>
-                <v-ons-icon icon="ion-thumbsup"></v-ons-icon>
-              </v-ons-button>
-              <v-ons-button>
-                <v-ons-icon icon="ion-share"></v-ons-icon>
+                <router-link :to="{name : 'DetailRepas', params : { id : repas.id }}">
+                  <v-ons-icon icon="ion-thumbsup"></v-ons-icon>
+                </router-link>
               </v-ons-button>
             </div>
             <v-ons-list>
@@ -39,11 +38,11 @@
     name : 'liste-repas',
     data() {
       return {
-        dateLivraison : '11/05'
+        dateLivraison : new Date()
       }
     },
     created() {
-      this.$store.commit('changeTitle', 'Commander un repas')
+      this.$store.commit('changeTitle', 'Commandes')
       this.$store.dispatch('getRepasCommande')
     },
     methods : {

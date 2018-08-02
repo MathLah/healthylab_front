@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name : 'Calories',
+    name : 'calories',
     created() {
       this.$store.commit('changeTitle', 'Calories')
     }

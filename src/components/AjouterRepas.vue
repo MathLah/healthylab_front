@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name : 'recettes',
+    name : 'ajouter-repas',
     created() {
       this.$store.commit('changeTitle', 'Suggestions de Repas')
     }

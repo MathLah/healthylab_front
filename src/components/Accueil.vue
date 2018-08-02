@@ -16,7 +16,7 @@
   import store from '../store'
 
   export default {
-    name : 'Accueil',
+    name : 'accueil',
     data() {
       return {}
     },

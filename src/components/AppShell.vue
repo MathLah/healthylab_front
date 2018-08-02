@@ -11,10 +11,10 @@
         <span class="title">{{title}}</span>
       </div>
 
-      <div class="right yolo">
-        <router-link class="upgrade" :to="{ name : 'SouscrirePremium' }" v-if="!profil.premium">Passer à la
-          version premium
-        </router-link>
+      <div class="right">
+        <!--<router-link class="upgrade" :to="{ name : 'SouscrirePremium' }" v-if="!profil.premium">Passer à la-->
+          <!--version premium-->
+        <!--</router-link>-->
         <span class="point_counter">{{profil.points}} points</span>
       </div>
     </v-ons-toolbar>

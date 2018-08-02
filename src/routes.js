@@ -15,6 +15,12 @@ import DetailRepas from '@/components/CommandeRepas/DetailRepas'
 import SouscrirePremium from '@/components/SouscrirePremium'
 
 
+const withPrefix = (prefix, routes) =>
+  routes.map((route) => {
+    route.path = `${prefix}/${route.path}`
+    return route
+  })
+
 const routes = [
   {
     path : '/login',
@@ -48,18 +54,18 @@ const routes = [
         name : 'Profil',
         component : Profil,
       },
-      {
-        path : '/listeRepas',
-        name : 'ListeRepas',
-        component : ListeRepas,
-        children : [
-          {
-            path : '/detailRepas',
-            name : 'DetailRepas',
-            component : DetailRepas,
-          },
-        ]
-      },
+      ...withPrefix('/commande-repas', [
+        {
+          path : 'liste',
+          name : 'ListeRepas',
+          component : ListeRepas,
+        },
+        {
+          path : 'detail/:id',
+          name : 'DetailRepas',
+          component : DetailRepas,
+        },
+      ]),
       {
         path : '/calories',
         name : 'Calories',
@@ -70,23 +76,25 @@ const routes = [
         name : 'Poids',
         component : Poids,
       },
+      ...withPrefix('ajouter', [
+        {
+          path : '/ami',
+          name : 'AjouterAmi',
+          component : AjouterAmi,
+        },
+        {
+          path : '/seance',
+          name : 'AjouterSeance',
+          component : AjouterSeance,
+        },
+        {
+          path : '/repas',
+          name : 'AjouterRepas',
+          component : AjouterRepas,
+        },
+      ]),
       {
-        path : '/ajouterAmi',
-        name : 'AjouterAmi',
-        component : AjouterAmi,
-      },
-      {
-        path : '/ajouterSeance',
-        name : 'AjouterSeance',
-        component : AjouterSeance,
-      },
-      {
-        path : '/ajouterRepas',
-        name : 'AjouterRepas',
-        component : AjouterRepas,
-      },
-      {
-        path : '/souscrirePremium',
+        path : '/souscrire-premium',
         name : 'SouscrirePremium',
         component : SouscrirePremium,
       },
