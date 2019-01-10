@@ -1,14 +1,14 @@
 <template>
-  <div>azeza</div>
+    <div>azeza</div>
 </template>
 
 <script>
-  export default {
-    name : 'ajouter-repas',
-    created() {
-      this.$store.commit('changeTitle', 'Suggestions de Repas')
-    }
-  }
+    export default {
+        name: 'ajouter-repas',
+        created() {
+            this.$store.commit('changeTitle', 'Suggestions de Repas');
+        }
+    };
 </script>
 
 <style scoped>

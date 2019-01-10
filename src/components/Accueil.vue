@@ -1,75 +1,50 @@
 <template>
-  <div>
-    <div>
-      <div>{{ profilComplet.basal_metabolic_rate }} KCAL conseillées</div>
-      <div>{{ caloriesRestantes }} KCAL restantes</div>
-      <div>{{ caloriesBrulees }} KCAL brulées</div>
-      <div>Il vous reste {{ restePoidsAPerdre }}kg à perdre</div>
-    </div>
-    <div>
-      <span v-for="jour in getJourSemaine">{{ jour | shortDate }}</span>
-    </div>
-  </div>
+
+    <v-ons-page>
+        <v-ons-card class="bloc-accueil">
+            Votre journal
+        </v-ons-card>
+        <v-ons-card class="bloc-accueil">
+            Les recettes
+        </v-ons-card>
+        <v-ons-card class="bloc-accueil">
+            Commander vos repas
+        </v-ons-card>
+        <v-ons-card class="">
+            <h3>Nos offres premium</h3>
+            <p>Quod cum ita sit, paucae domus studiorum seriis cultibus antea celebratae nunc ludibriis ignaviae torpentis exundant</p>
+            <p>vocali sonu, perflabili tinnitu fidium resultantes. denique pro philosopho cantor et in locum oratoris doctor artium ludicrarum accitur et bybliothecis sepulcrorum ritu in perpetuum clausis organa fabricantur hydraulica, et lyrae ad speciem carpentorum ingentes tibiaeque et histrionici gestus instrumenta non levia.</p>
+        </v-ons-card>
+    </v-ons-page>
 </template>
 
 <script>
-  import store from '../store'
+    import store from '../store';
 
-  export default {
-    name : 'accueil',
-    data() {
-      return {}
-    },
-    async beforeRouteEnter(to, from, next) {
-      store.commit('changeTitle', 'Journal')
-      try {
-        await store.dispatch('getInfosComplete')
-      } catch (err) {
-        if (err.reponse) {
-          console.error(err)
-        }
-        console.error(err)
-      }
-      next()
-    },
-    computed : {
-      profilComplet() {
-        return this.$store.getters.profilComplet
-      },
-      getJourSemaine() {
-        const jourSemaine = []
-        // On recupere le Lundi de cette semaine
-        const lundi = new Date()
-        lundi.setDate(lundi.getDate() + (1 - lundi.getDay()))
-
-        // on alimente un tableau avec tout les jours de cette semaine
-        for (let i = 0; i < 7; i += 1) {
-          const jour = new Date()
-          jour.setDate(lundi.getDate() + i)
-          jourSemaine.push(jour)
-        }
-        return jourSemaine
-      },
-      restePoidsAPerdre() {
-        // Poids actuel - poids souhaité
-        // TODO : voir changement sur une prise de poids
-        return this.profilComplet.weight - this.profilComplet.objective_weight
-      },
-      caloriesBrulees() {
-        // TODO : somme activité
-        return this.$store.getters.caloriesActivites
-      },
-      caloriesRestantes() {
-        // TODO : Somme KCAL base + calories brulée - repas
-        let caloriesRestantes = this.profilComplet.basal_metabolic_rate
-        caloriesRestantes += this.caloriesBrulees
-        caloriesRestantes -= this.$store.getters.caloriesRepasConsommes
-        return caloriesRestantes
-      },
-    },
-  }
+    export default {
+        name: 'accueil',
+        data() {
+            return {};
+        },
+        async beforeRouteEnter(to, from, next) {
+            store.commit('changeTitle', 'Bienvenue');
+            try {
+                await store.dispatch('getInfosComplete');
+            } catch (err) {
+                if (err.reponse) {
+                    console.error(err);
+                }
+                console.error(err);
+            }
+            next();
+        },
+        computed: {
+        },
+    };
 </script>
 
 <style lang="scss">
-
+    .bloc-accueil {
+        height: 33%;
+    }
 </style>
