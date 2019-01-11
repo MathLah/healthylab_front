@@ -1,8 +1,8 @@
 <template>
     <v-ons-splitter>
-        <v-ons-splitter-side
-                swipeable width="75%" collapse="" side="left"
-                :open.sync="openSide"
+        <v-ons-splitter-side swipeable
+            width="75%" collapse="" side="left"
+            :open.sync="openSide"
         >
             <v-ons-page>
                 <v-ons-card>
@@ -43,24 +43,6 @@
 
         <v-ons-splitter-content>
             <v-ons-page>
-                <v-ons-toolbar class="toolbar primary">
-                    <div class="left">
-                        <v-ons-toolbar-button icon="ion-navicon, material: md-menu" v-on:click="toggleMenu"></v-ons-toolbar-button>
-                    </div>
-
-                    <div class="center">
-                        <v-ons-icon class="logo"></v-ons-icon>
-                        <span class="title">{{title}}</span>
-                    </div>
-
-                    <div class="right">
-                        <!--<router-link class="upgrade" :to="{ name : 'SouscrirePremium' }" v-if="!profil.premium">Passer à la-->
-                        <!--version premium-->
-                        <!--</router-link>-->
-                        <span class="point_counter">{{profil.points}} points</span>
-                    </div>
-                </v-ons-toolbar>
-
                 <div class="container">
                     <router-view/>
                 </div>
@@ -87,8 +69,8 @@
                             </v-ons-fab>
 
                             <v-ons-speed-dial-item
-                                    v-for="item in actionMenu" :key="item.routeName"
-                                    @click="$router.push({ name : item.routeName })"
+                                v-for="item in actionMenu" :key="item.routeName"
+                                @click="$router.push({ name : item.routeName })"
                             >
                                 <v-ons-icon :icon="item.icon"></v-ons-icon>
                             </v-ons-speed-dial-item>
@@ -126,8 +108,8 @@
                     {label: 'Repas', icon: 'md-menu', routeName: 'AjouterRepas'},
                     {label: 'Coach / éléve', icon: 'md-menu', routeName: 'AjouterAmi'},
                 ],
+                profile: this.$store.getters.profilComplet,
                 openSide: false,
-                profile: this.$store.getters.profilComplet
             };
         },
         async beforeRouteEnter(to, from, next) {
@@ -146,15 +128,10 @@
                 return this.$store.getters.profilBase;
             },
         },
-        methods: {
-            toggleMenu() {
-                this.openSide = !this.openSide;
-            }
-        },
         watch: {
             $route() {
                 this.openSide = false;
-            }
+            },
         }
     };
 </script>

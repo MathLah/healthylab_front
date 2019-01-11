@@ -4,6 +4,7 @@ import Register from '@/components/Register';
 import AppShell from '@/components/AppShell';
 import NotFound from '@/components/NotFound';
 import Accueil from '@/components/Accueil';
+import AccueilNav from '@/components/AccueilNav';
 import Journal from '@/components/Journal';
 import Profil from '@/components/Profil';
 import AjouterRepas from '@/components/AjouterRepas';
@@ -14,7 +15,6 @@ import AjouterSeance from '@/components/AjouterSeance';
 import ListeRepas from '@/components/CommandeRepas/ListeRepas';
 import DetailRepas from '@/components/CommandeRepas/DetailRepas';
 import SouscrirePremium from '@/components/SouscrirePremium';
-
 
 const withPrefix = (prefix, routes) =>
     routes.map((route) => {
@@ -47,13 +47,19 @@ const routes = [
         children: [
             {
                 path: '',
-                name: 'Accueil',
-                component: Accueil,
+                component: AccueilNav,
                 children: [
                     {
-                        path: '/journal',
-                        name: 'Journal',
-                        component: Journal,
+                        path: '',
+                        name: 'Accueil',
+                        component: Accueil,
+                        children: [
+                            {
+                                path: '/journal',
+                                name: 'Journal',
+                                component: Journal,
+                            },
+                        ],
                     },
                 ],
             },

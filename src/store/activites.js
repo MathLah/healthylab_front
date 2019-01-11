@@ -21,6 +21,7 @@ export default {
     },
     mutations: {
         setActivites(state, infos) {
+            console.log(infos);
             state.infosBase = infos;
         },
     },
