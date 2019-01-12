@@ -33,10 +33,7 @@
 
             <v-ons-list-item v-for="(s, $index) in salles" :key="s.nom" tappable>
                 <label class="left">
-                    {{ s.nom }} - {{ s.ville }}
-                </label>
-                <label :for="'radio-' + $index" class="center">
-                    {{ type }}
+                    {{ s.salle }} - {{ s.ville }}
                 </label>
             </v-ons-list-item>
             <v-ons-list-item>
@@ -65,8 +62,8 @@
         },
         methods: {
             ajouterSalle() {
-                console.log({'ville' : this.ville, 'salle': this.salle});
-                this.salles.push[{'ville' : this.ville, 'salle': this.salle}];
+                const salle = {ville : this.ville, salle: this.salle};
+                this.salles.push(salle);
             },
             next() {
                 this.$router.replace({name: 'Accueil'});
