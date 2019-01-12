@@ -1,23 +1,35 @@
 <template>
-    <div id="login">
-        <form class="login_form" @submit.prevent="login()">
-            <div>
-                <label for="username">Email</label>
-                <input id="username" name="username" type="text" v-model="credentials.username">
-            </div>
+    <v-ons-page>
+        <div id="login">
+            <form class="login_form" @submit.prevent="login()">
+                <div>
+                    <label for="username">Email</label>
+                    <input id="username" name="username" type="text" v-model="credentials.username">
+                </div>
 
-            <div>
-                <label for="password">Mot de passe</label>
-                <input id="password" name="password" type="password" v-model="credentials.password">
-            </div>
+                <div>
+                    <label for="password">Mot de passe</label>
+                    <input id="password" name="password" type="password" v-model="credentials.password">
+                </div>
 
-            <button type="submit">Connexion</button>
-        </form>
-    </div>
+                <button type="submit">Connexion</button>
+            </form>
+            <v-facebook-login app-id="966242223397117"></v-facebook-login>
+
+            <router-link :to="{name : 'RegisterNav'}">
+                <div class="center">Créer un compte</div>
+            </router-link>
+        </div>
+    </v-ons-page>
 </template>
 
 <script>
+    import VFacebookLogin from 'vue-facebook-login-component';
+
     export default {
+        components: {
+            VFacebookLogin
+        },
         name: 'login',
         data() {
             return {

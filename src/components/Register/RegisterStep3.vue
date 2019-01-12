@@ -1,0 +1,55 @@
+<template>
+    <v-ons-page>
+        <v-ons-toolbar class="toolbar primary">
+            <div class="left">
+                <v-ons-back-button>Back</v-ons-back-button>
+            </div>
+
+            <div class="center">
+                <span class="title">{{title}}</span>
+            </div>
+
+            <div class="right">
+            </div>
+        </v-ons-toolbar>
+        <v-ons-list>
+            <v-ons-list-item>
+                <div class="center">
+                    <v-ons-input placeholder="Votre taille" float v-model="height">
+                    </v-ons-input>
+                </div>
+            </v-ons-list-item>
+
+            <v-ons-list-item>
+                <v-ons-button style="margin: 6px 0" v-on:click="next">Suivant</v-ons-button>
+            </v-ons-list-item>
+        </v-ons-list>
+    </v-ons-page>
+</template>
+
+<script>
+    export default {
+        name: 'register-step-3',
+        inject: ['navigator'],
+        data() {
+            return {
+                height: 160,
+            };
+        },
+        computed: {
+            title() {
+                return 'Register Step 3';
+            }
+        },
+        methods: {
+            next() {
+                const matched = this.$router.matcher.match('/register/4').matched.pop();
+                this.$emit('push-page', matched.components.default);
+            },
+        }
+    };
+</script>
+
+<style scoped>
+
+</style>

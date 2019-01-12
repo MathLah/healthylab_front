@@ -65,7 +65,6 @@
                 this.$emit('push-page', matched.components.default);
             },
             toggleMenu() {
-                console.log(this.$parent.$parent.$parent.$parent.$parent.$parent.$parent.openSide);
                 this.$parent.$parent.$parent.$parent.$parent.$parent.$parent.openSide = true;
             },
         }

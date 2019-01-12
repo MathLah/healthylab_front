@@ -1,6 +1,12 @@
 // import components
 import Login from '@/components/Login';
-import Register from '@/components/Register';
+import RegisterNav from '@/components/Register/RegisterNav';
+import Register from '@/components/Register/Register';
+import RegisterStep1 from '@/components/Register/RegisterStep1';
+import RegisterStep2 from '@/components/Register/RegisterStep2';
+import RegisterStep3 from '@/components/Register/RegisterStep3';
+import RegisterStep4 from '@/components/Register/RegisterStep4';
+import RegisterStep5 from '@/components/Register/RegisterStep5';
 import AppShell from '@/components/AppShell';
 import NotFound from '@/components/NotFound';
 import Accueil from '@/components/Accueil';
@@ -30,8 +36,42 @@ const routes = [
     },
     {
         path: '/register',
-        name: 'Register',
-        component: Register,
+        name: 'RegisterNav',
+        component: RegisterNav,
+        children: [
+            {
+                path: '/register',
+                name: 'Register',
+                component: Register,
+                children: [
+                    {
+                        path: '/register/1',
+                        name: 'RegisterStep1',
+                        component: RegisterStep1,
+                    },
+                    {
+                        path: '/register/2',
+                        name: 'RegisterStep2',
+                        component: RegisterStep2,
+                    },
+                    {
+                        path: '/register/3',
+                        name: 'RegisterStep3',
+                        component: RegisterStep3,
+                    },
+                    {
+                        path: '/register/4',
+                        name: 'RegisterStep4',
+                        component: RegisterStep4,
+                    },
+                    {
+                        path: '/register/5',
+                        name: 'RegisterStep5',
+                        component: RegisterStep5,
+                    },
+                ],
+            },
+        ]
     },
     {
         path: '/password',
