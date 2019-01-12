@@ -7,7 +7,6 @@
             </div>
 
             <div class="center">
-                <v-ons-icon class="logo"></v-ons-icon>
                 <span class="title">{{title}}</span>
             </div>
 

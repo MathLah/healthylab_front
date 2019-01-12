@@ -21,7 +21,7 @@ axios.interceptors.response
 axios.interceptors.request
     .use(
         (request) => {
-            if (store.state.token) {
+            if (store.state.token && store.state.token !== 'null') {
                 request.headers.Authorization = `Token ${store.state.token}`;
             }
             return request;

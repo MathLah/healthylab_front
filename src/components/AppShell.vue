@@ -1,6 +1,6 @@
 <template>
     <v-ons-splitter>
-        <v-ons-splitter-side swipeable
+        <v-ons-splitter-side
             width="75%" collapse="" side="left"
             :open.sync="openSide"
         >
@@ -9,6 +9,11 @@
                     {{ profile.first_name }}
                     {{ profile.last_name }}
                     {{ profile.email }}
+                    <p>
+                        <router-link :to="{name : 'Profil'}">
+                            Modifier mon profil
+                        </router-link>
+                    </p>
                 </v-ons-card>
                 <v-ons-list>
                     <v-ons-list-item>
@@ -17,7 +22,9 @@
                         </router-link>
                     </v-ons-list-item>
                     <v-ons-list-item>
-                        <div class="center">L'OFFRE PREMIUM</div>
+                        <router-link :to="{name: 'SouscrirePremium'}">
+                            <div class="center">L'OFFRE PREMIUM</div>
+                        </router-link>
                     </v-ons-list-item>
                     <v-ons-list-item>
                         <div class="center">MES DONNÉES</div>
@@ -38,6 +45,7 @@
                         <div class="center">A PROPOS</div>
                     </v-ons-list-item>
                 </v-ons-list>
+                <v-ons-button modifier="large" style="margin: 6px 0" v-on:click="logout">Déconnexion</v-ons-button>
             </v-ons-page>
         </v-ons-splitter-side>
 
@@ -127,6 +135,12 @@
             profil() {
                 return this.$store.getters.profilBase;
             },
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch('logout');
+                this.$router.replace({name: 'Login'});
+            }
         },
         watch: {
             $route() {

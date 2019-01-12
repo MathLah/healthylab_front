@@ -1,7 +1,6 @@
 <template>
     <div id="login">
         <form class="login_form" @submit.prevent="login()">
-
             <div>
                 <label for="username">Email</label>
                 <input id="username" name="username" type="text" v-model="credentials.username">
@@ -13,7 +12,6 @@
             </div>
 
             <button type="submit">Connexion</button>
-
         </form>
     </div>
 </template>

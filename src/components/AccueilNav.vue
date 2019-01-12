@@ -15,7 +15,6 @@
 
 <script>
     import Accueil from '@/components/Accueil';
-    import store from '../store';
 
     export default {
         name: 'accueil-nav',

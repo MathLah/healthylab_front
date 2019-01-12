@@ -3,7 +3,7 @@ import Vue from 'vue';
 // Import Onsen
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
-import VueOnsen from 'vue-onsenui'; // This already imports 'onsenui';
+import VueOnsen from 'vue-onsenui'; // This already imports 'onsenui'
 // Imports
 import VueRouter from 'vue-router';
 import store from './store';
