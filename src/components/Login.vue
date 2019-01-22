@@ -115,6 +115,7 @@
       font-size: 1.75rem;
       width: 100%;
       border-bottom: 1px solid rgba($global_color, .4);
+      color: $global_color;
       &:focus{
         color: $primary-color;
         border-color: $primary-color;
